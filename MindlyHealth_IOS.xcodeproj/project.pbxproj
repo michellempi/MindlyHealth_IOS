@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		8040282B2DDD5F2D00B5ADAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 804028122DDD5F2A00B5ADAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 804028192DDD5F2A00B5ADAC;
+			remoteInfo = MindlyHealth_IOS;
+		};
+		804028352DDD5F2D00B5ADAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 804028122DDD5F2A00B5ADAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 804028192DDD5F2A00B5ADAC;
+			remoteInfo = MindlyHealth_IOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8040281A2DDD5F2A00B5ADAC /* MindlyHealth_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindlyHealth_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8040282A2DDD5F2D00B5ADAC /* MindlyHealth_IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindlyHealth_IOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		804028342DDD5F2D00B5ADAC /* MindlyHealth_IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindlyHealth_IOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8040281C2DDD5F2A00B5ADAC /* MindlyHealth_IOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MindlyHealth_IOS;
+			sourceTree = "<group>";
+		};
+		8040282D2DDD5F2D00B5ADAC /* MindlyHealth_IOSTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MindlyHealth_IOSTests;
+			sourceTree = "<group>";
+		};
+		804028372DDD5F2D00B5ADAC /* MindlyHealth_IOSUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MindlyHealth_IOSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		804028172DDD5F2A00B5ADAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804028272DDD5F2D00B5ADAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804028312DDD5F2D00B5ADAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		804028112DDD5F2A00B5ADAC = {
+			isa = PBXGroup;
+			children = (
+				8040281C2DDD5F2A00B5ADAC /* MindlyHealth_IOS */,
+				8040282D2DDD5F2D00B5ADAC /* MindlyHealth_IOSTests */,
+				804028372DDD5F2D00B5ADAC /* MindlyHealth_IOSUITests */,
+				8040281B2DDD5F2A00B5ADAC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8040281B2DDD5F2A00B5ADAC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8040281A2DDD5F2A00B5ADAC /* MindlyHealth_IOS.app */,
+				8040282A2DDD5F2D00B5ADAC /* MindlyHealth_IOSTests.xctest */,
+				804028342DDD5F2D00B5ADAC /* MindlyHealth_IOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		804028192DDD5F2A00B5ADAC /* MindlyHealth_IOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8040283E2DDD5F2D00B5ADAC /* Build configuration list for PBXNativeTarget "MindlyHealth_IOS" */;
+			buildPhases = (
+				804028162DDD5F2A00B5ADAC /* Sources */,
+				804028172DDD5F2A00B5ADAC /* Frameworks */,
+				804028182DDD5F2A00B5ADAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8040281C2DDD5F2A00B5ADAC /* MindlyHealth_IOS */,
+			);
+			name = MindlyHealth_IOS;
+			packageProductDependencies = (
+			);
+			productName = MindlyHealth_IOS;
+			productReference = 8040281A2DDD5F2A00B5ADAC /* MindlyHealth_IOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		804028292DDD5F2D00B5ADAC /* MindlyHealth_IOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 804028412DDD5F2D00B5ADAC /* Build configuration list for PBXNativeTarget "MindlyHealth_IOSTests" */;
+			buildPhases = (
+				804028262DDD5F2D00B5ADAC /* Sources */,
+				804028272DDD5F2D00B5ADAC /* Frameworks */,
+				804028282DDD5F2D00B5ADAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8040282C2DDD5F2D00B5ADAC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8040282D2DDD5F2D00B5ADAC /* MindlyHealth_IOSTests */,
+			);
+			name = MindlyHealth_IOSTests;
+			packageProductDependencies = (
+			);
+			productName = MindlyHealth_IOSTests;
+			productReference = 8040282A2DDD5F2D00B5ADAC /* MindlyHealth_IOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		804028332DDD5F2D00B5ADAC /* MindlyHealth_IOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 804028442DDD5F2D00B5ADAC /* Build configuration list for PBXNativeTarget "MindlyHealth_IOSUITests" */;
+			buildPhases = (
+				804028302DDD5F2D00B5ADAC /* Sources */,
+				804028312DDD5F2D00B5ADAC /* Frameworks */,
+				804028322DDD5F2D00B5ADAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				804028362DDD5F2D00B5ADAC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				804028372DDD5F2D00B5ADAC /* MindlyHealth_IOSUITests */,
+			);
+			name = MindlyHealth_IOSUITests;
+			packageProductDependencies = (
+			);
+			productName = MindlyHealth_IOSUITests;
+			productReference = 804028342DDD5F2D00B5ADAC /* MindlyHealth_IOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		804028122DDD5F2A00B5ADAC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					804028192DDD5F2A00B5ADAC = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					804028292DDD5F2D00B5ADAC = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 804028192DDD5F2A00B5ADAC;
+					};
+					804028332DDD5F2D00B5ADAC = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 804028192DDD5F2A00B5ADAC;
+					};
+				};
+			};
+			buildConfigurationList = 804028152DDD5F2A00B5ADAC /* Build configuration list for PBXProject "MindlyHealth_IOS" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 804028112DDD5F2A00B5ADAC;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8040281B2DDD5F2A00B5ADAC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				804028192DDD5F2A00B5ADAC /* MindlyHealth_IOS */,
+				804028292DDD5F2D00B5ADAC /* MindlyHealth_IOSTests */,
+				804028332DDD5F2D00B5ADAC /* MindlyHealth_IOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		804028182DDD5F2A00B5ADAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804028282DDD5F2D00B5ADAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804028322DDD5F2D00B5ADAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		804028162DDD5F2A00B5ADAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804028262DDD5F2D00B5ADAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804028302DDD5F2D00B5ADAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8040282C2DDD5F2D00B5ADAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 804028192DDD5F2A00B5ADAC /* MindlyHealth_IOS */;
+			targetProxy = 8040282B2DDD5F2D00B5ADAC /* PBXContainerItemProxy */;
+		};
+		804028362DDD5F2D00B5ADAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 804028192DDD5F2A00B5ADAC /* MindlyHealth_IOS */;
+			targetProxy = 804028352DDD5F2D00B5ADAC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8040283C2DDD5F2D00B5ADAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8040283D2DDD5F2D00B5ADAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8040283F2DDD5F2D00B5ADAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MindlyHealth_IOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "UC.MindlyHealth-IOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		804028402DDD5F2D00B5ADAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MindlyHealth_IOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "UC.MindlyHealth-IOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		804028422DDD5F2D00B5ADAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "UC.MindlyHealth-IOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MindlyHealth_IOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MindlyHealth_IOS";
+			};
+			name = Debug;
+		};
+		804028432DDD5F2D00B5ADAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "UC.MindlyHealth-IOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MindlyHealth_IOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MindlyHealth_IOS";
+			};
+			name = Release;
+		};
+		804028452DDD5F2D00B5ADAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "UC.MindlyHealth-IOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MindlyHealth_IOS;
+			};
+			name = Debug;
+		};
+		804028462DDD5F2D00B5ADAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "UC.MindlyHealth-IOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MindlyHealth_IOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		804028152DDD5F2A00B5ADAC /* Build configuration list for PBXProject "MindlyHealth_IOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8040283C2DDD5F2D00B5ADAC /* Debug */,
+				8040283D2DDD5F2D00B5ADAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8040283E2DDD5F2D00B5ADAC /* Build configuration list for PBXNativeTarget "MindlyHealth_IOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8040283F2DDD5F2D00B5ADAC /* Debug */,
+				804028402DDD5F2D00B5ADAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		804028412DDD5F2D00B5ADAC /* Build configuration list for PBXNativeTarget "MindlyHealth_IOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				804028422DDD5F2D00B5ADAC /* Debug */,
+				804028432DDD5F2D00B5ADAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		804028442DDD5F2D00B5ADAC /* Build configuration list for PBXNativeTarget "MindlyHealth_IOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				804028452DDD5F2D00B5ADAC /* Debug */,
+				804028462DDD5F2D00B5ADAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 804028122DDD5F2A00B5ADAC /* Project object */;
+}
