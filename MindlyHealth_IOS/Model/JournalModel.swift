@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct JournalModel {
+struct JournalModel: Identifiable {
     var id: String = ""
     var userId: String = ""
     var date: Date
     var mood: MoodModel
-    var content: String = ""
+    var title: String
+    var content: String
 }

@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct JournalListView: View {
+    @StateObject private var journalVM = JournalViewModel()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 15) {
+                    ForEach(journalVM.journals) { journal in
+                        JournalCardView(journal: journal)
+                    }
+                }
+                .padding()
+            }
+            .navigationTitle("My Journal")
+        }
     }
 }
 

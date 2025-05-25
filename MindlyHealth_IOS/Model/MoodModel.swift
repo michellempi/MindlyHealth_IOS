@@ -10,6 +10,5 @@ import Foundation
 struct MoodModel {
     var id: String = ""
     var description: String = ""
-    var color: String
     var emoji: String = ""
 }

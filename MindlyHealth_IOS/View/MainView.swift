@@ -14,7 +14,7 @@ struct MainView: View {
         TabView {
             JournalListView()
                 .tabItem {
-                    Label("Read", systemImage: "book")
+                    Label("Journal", systemImage: "book.pages")
                 }
 
             ProfileView()
