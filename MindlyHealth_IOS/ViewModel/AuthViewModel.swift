@@ -16,6 +16,9 @@ class AuthViewModel: ObservableObject {
 
     @Published var falseCredential: Bool
 
+    @Published var currentEmail: String = ""
+    @Published var currentName: String = ""
+
     init() {
         self.user = nil
         self.isSignedIn = false
@@ -27,6 +30,14 @@ class AuthViewModel: ObservableObject {
     func checkUserSession() {
         self.user = Auth.auth().currentUser
         self.isSignedIn = self.user != nil
+
+        if let user = self.user {
+            self.currentEmail = user.email ?? "No Email"
+            self.currentName = user.displayName ?? "No Name"
+        } else {
+            self.currentEmail = ""
+            self.currentName = ""
+        }
     }
 
     func signOut() {
@@ -54,9 +65,16 @@ class AuthViewModel: ObservableObject {
 
     func signUp() async {
         do {
-            let _ = try await Auth.auth().createUser(
+            let result = try await Auth.auth().createUser(
                 withEmail: userModel.email, password: userModel.password)
+            
+            let changeRequest = result.user.createProfileChangeRequest()
+                    changeRequest.displayName = userModel.name
+                    try await changeRequest.commitChanges()
+            
             self.falseCredential = false  //sign up successful
+            self.checkUserSession()  // agar currentName terupdate juga
+
         } catch {
             print("Sign Up Error: \(error.localizedDescription)")
             self.falseCredential = true  //sign up failed

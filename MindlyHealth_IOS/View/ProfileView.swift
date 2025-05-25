@@ -19,12 +19,12 @@ struct ProfileView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.top, 40)
-            
+
             VStack(alignment: .leading, spacing: 15) {
                 // Name
                 Text("Name")
                     .font(.headline)
-                Text(authVM.userModel.name)
+                Text(authVM.currentName)
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color(.systemGray6))
@@ -33,43 +33,17 @@ struct ProfileView: View {
                 // Email
                 Text("Email")
                     .font(.headline)
-                Text(authVM.userModel.email)
+                Text(authVM.currentEmail)
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color(.systemGray6))
                     .cornerRadius(10)
-
-                // Password
-                Text("Password")
-                    .font(.headline)
-                HStack {
-                    if isPasswordVisible {
-                        Text(authVM.userModel.password)
-                    } else {
-                        SecureField(
-                            "", text: .constant(authVM.userModel.password)
-                        )
-                        .disabled(true)
-                    }
-
-                    Button(action: {
-                        isPasswordVisible.toggle()
-                    }) {
-                        Image(
-                            systemName: isPasswordVisible ? "eye.slash" : "eye"
-                        )
-                        .foregroundColor(.gray)
-                    }
-                }
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
             }
-
 
             // Logout Button
             Button(action: {
                 authVM.signOut()
+                authVM.checkUserSession()
             }) {
                 Text("Logout")
                     .frame(maxWidth: .infinity)
@@ -80,7 +54,7 @@ struct ProfileView: View {
             }
             Spacer()
         }
-        .padding(.horizontal,30)
+        .padding(.horizontal, 30)
     }
 }
 

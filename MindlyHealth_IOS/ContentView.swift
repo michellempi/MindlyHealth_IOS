@@ -8,17 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var authVM: AuthViewModel
+    @State private var isRegisterView: Bool = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if authVM.isSignedIn {
+            MainView()
+        } else {
+            if isRegisterView {
+                RegisterView(isRegisterView: $isRegisterView)
+                    .onAppear {
+                        authVM.falseCredential = false
+                    }
+                    .transition(.move(edge: .trailing))
+            } else {
+                LoginView(isRegisterView: $isRegisterView)
+                    .onAppear {
+                        authVM.falseCredential = false
+                    }
+                    .transition(.move(edge: .leading))
+            }
         }
-        .padding()
+    
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(AuthViewModel())
 }

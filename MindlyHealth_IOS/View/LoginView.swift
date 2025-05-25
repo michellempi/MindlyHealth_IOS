@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var authVM: AuthViewModel
-    @State var registerClicked: Bool = true
+    @Binding var isRegisterView: Bool  // binding dari ContentView
 
     var body: some View {
         VStack(spacing: 20) {
@@ -55,7 +55,9 @@ struct LoginView: View {
 
             Button(
                 action: {
-                    registerClicked = false
+                    withAnimation {
+                        isRegisterView = true
+                    }
                 }
             ) {
                 Text("Don't have an account?").font(.system(size: 15))
@@ -75,6 +77,7 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    LoginView(isRegisterView: .constant(false))
         .environmentObject(AuthViewModel())
 }
+

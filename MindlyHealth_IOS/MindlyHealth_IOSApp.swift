@@ -24,7 +24,7 @@ struct MindlyHealth_IOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            ContentView()
                 .environmentObject(authViewModel)
         }
     }
