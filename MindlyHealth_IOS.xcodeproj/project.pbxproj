@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		804028C12DDD6D7B00B5ADAC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 804028C02DDD6D7B00B5ADAC /* FirebaseAnalytics */; };
+		804028C32DDD6D7B00B5ADAC /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 804028C22DDD6D7B00B5ADAC /* FirebaseAppCheck */; };
+		804028C52DDD6D7B00B5ADAC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 804028C42DDD6D7B00B5ADAC /* FirebaseAuth */; };
+		804028C72DDD6D7B00B5ADAC /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 804028C62DDD6D7B00B5ADAC /* FirebaseCore */; };
+		804028C92DDD6D7B00B5ADAC /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 804028C82DDD6D7B00B5ADAC /* FirebaseDatabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8040282B2DDD5F2D00B5ADAC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +60,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				804028C92DDD6D7B00B5ADAC /* FirebaseDatabase in Frameworks */,
+				804028C32DDD6D7B00B5ADAC /* FirebaseAppCheck in Frameworks */,
+				804028C52DDD6D7B00B5ADAC /* FirebaseAuth in Frameworks */,
+				804028C72DDD6D7B00B5ADAC /* FirebaseCore in Frameworks */,
+				804028C12DDD6D7B00B5ADAC /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +125,11 @@
 			);
 			name = MindlyHealth_IOS;
 			packageProductDependencies = (
+				804028C02DDD6D7B00B5ADAC /* FirebaseAnalytics */,
+				804028C22DDD6D7B00B5ADAC /* FirebaseAppCheck */,
+				804028C42DDD6D7B00B5ADAC /* FirebaseAuth */,
+				804028C62DDD6D7B00B5ADAC /* FirebaseCore */,
+				804028C82DDD6D7B00B5ADAC /* FirebaseDatabase */,
 			);
 			productName = MindlyHealth_IOS;
 			productReference = 8040281A2DDD5F2A00B5ADAC /* MindlyHealth_IOS.app */;
@@ -195,6 +213,9 @@
 			);
 			mainGroup = 804028112DDD5F2A00B5ADAC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				804028BF2DDD6D7B00B5ADAC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8040281B2DDD5F2A00B5ADAC /* Products */;
 			projectDirPath = "";
@@ -552,6 +573,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		804028BF2DDD6D7B00B5ADAC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.13.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		804028C02DDD6D7B00B5ADAC /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 804028BF2DDD6D7B00B5ADAC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		804028C22DDD6D7B00B5ADAC /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 804028BF2DDD6D7B00B5ADAC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		804028C42DDD6D7B00B5ADAC /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 804028BF2DDD6D7B00B5ADAC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		804028C62DDD6D7B00B5ADAC /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 804028BF2DDD6D7B00B5ADAC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		804028C82DDD6D7B00B5ADAC /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 804028BF2DDD6D7B00B5ADAC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 804028122DDD5F2A00B5ADAC /* Project object */;
 }

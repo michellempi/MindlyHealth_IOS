@@ -1,0 +1,15 @@
+//
+//  MoodModel.swift
+//  MindlyHealth_IOS
+//
+//  Created by Michelle Wijaya on 21/05/25.
+//
+
+import Foundation
+
+struct MoodModel {
+    var id: String = ""
+    var description: String = ""
+    var color: String
+    var emoji: String = ""
+}
