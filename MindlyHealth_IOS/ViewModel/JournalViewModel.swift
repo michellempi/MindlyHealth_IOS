@@ -6,41 +6,79 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
-class JournalViewModel: ObservableObject {
-    @Published var journals: [JournalModel] = []
+struct JournalEntry: Identifiable, Codable {
+    var id: String
+    var title: String
+    var content: String
+    var timestamp: Double
 
-    init() {
-        loadDummyJournals()
+    // Firebase-friendly initializer
+    init(id: String = UUID().uuidString, title: String, content: String, timestamp: Double = Date().timeIntervalSince1970) {
+        self.id = id
+        self.title = title
+        self.content = content
+        self.timestamp = timestamp
     }
 
-    func loadDummyJournals() {
-        journals = [
-            JournalModel(
-                id: UUID().uuidString,
-                userId: "user1",
-                date: Date(),
-                mood: MoodModel(
-                    id: "mood1",
-                    description: "Happy",
-                    emoji: "😊"
-                ),
-                title: "Great Start",
-                content: "I had a great start to the day!"
-            ),
-            JournalModel(
-                id: UUID().uuidString,
-                userId: "user2",
-                date: Date().addingTimeInterval(-86400),
-                mood: MoodModel(
-                    id: "mood2",
-                    description: "Sad",
-                    emoji: "😢"
-                ),
-                title: "Tough Day",
-                content:
-                    "Today was a bit tough emotionally, but I’m trying to get through it."
-            ),
+    init?(from snapshot: DataSnapshot) {
+        guard
+            let value = snapshot.value as? [String: Any],
+            let title = value["title"] as? String,
+            let content = value["content"] as? String,
+            let timestamp = value["timestamp"] as? Double
+        else {
+            return nil
+        }
+
+        self.id = snapshot.key
+        self.title = title
+        self.content = content
+        self.timestamp = timestamp
+    }
+
+    func toDict() -> [String: Any] {
+        return [
+            "title": title,
+            "content": content,
+            "timestamp": timestamp
         ]
+    }
+}
+
+class JournalViewModel: ObservableObject {
+    @Published var journalEntries: [JournalEntry] = []
+    private var dbRef: DatabaseReference? {
+        guard let uid = Auth.auth().currentUser?.uid else { return nil }
+        return Database.database().reference().child("users").child(uid).child("journals")
+    }
+
+    init() {
+        fetchJournalEntries()
+    }
+
+    func fetchJournalEntries() {
+        dbRef?.observe(.value, with: { snapshot in
+            var newEntries: [JournalEntry] = []
+            for child in snapshot.children {
+                if let childSnapshot = child as? DataSnapshot,
+                   let entry = JournalEntry(from: childSnapshot) {
+                    newEntries.append(entry)
+                }
+            }
+            self.journalEntries = newEntries.sorted { $0.timestamp > $1.timestamp }
+        })
+    }
+
+    func addEntry(title: String, content: String) {
+        let newEntry = JournalEntry(title: title, content: content)
+        dbRef?.child(newEntry.id).setValue(newEntry.toDict())
+    }
+
+    func deleteEntry(_ entry: JournalEntry) {
+        dbRef?.child(entry.id).removeValue()
     }
 }
