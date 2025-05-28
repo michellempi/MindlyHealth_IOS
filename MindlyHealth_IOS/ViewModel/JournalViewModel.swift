@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 struct JournalEntry: Identifiable, Codable {
+    
     var id: String
     var title: String
     var content: String
@@ -55,11 +56,13 @@ class JournalViewModel: ObservableObject {
         guard let uid = Auth.auth().currentUser?.uid else { return nil }
         return Database.database().reference().child("users").child(uid).child("journals")
     }
-
+    
     init() {
         fetchJournalEntries()
     }
-
+    
+    @Published var journals: [JournalModel] = []
+    
     func fetchJournalEntries() {
         dbRef?.observe(.value, with: { snapshot in
             var newEntries: [JournalEntry] = []
@@ -72,13 +75,28 @@ class JournalViewModel: ObservableObject {
             self.journalEntries = newEntries.sorted { $0.timestamp > $1.timestamp }
         })
     }
-
+    
     func addEntry(title: String, content: String) {
         let newEntry = JournalEntry(title: title, content: content)
         dbRef?.child(newEntry.id).setValue(newEntry.toDict())
     }
-
+    
     func deleteEntry(_ entry: JournalEntry) {
         dbRef?.child(entry.id).removeValue()
+    }
+    
+    
+    func addJournal(title: String, content: String, mood: MoodModel) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let journal = JournalModel(
+            userId: uid,
+            date: Date(),
+            mood: mood,
+            title: title,
+            content: content
+        )
+        
+        dbRef?.child(journal.id).setValue(journal.toDict())
     }
 }

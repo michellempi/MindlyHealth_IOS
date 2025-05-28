@@ -68,19 +68,3 @@ struct JournalCardView: View {
     }
 }
 
-#Preview {
-    JournalCardView(
-        journal: JournalModel(
-            id: "1",
-            userId: "user1",
-            date: Date(),
-            mood: MoodModel(
-                id: "mood1",
-                description: "Happy",
-                emoji: "😊"
-            ),
-            title: "A Beautiful Day",
-            content:
-                "Today was a great day! I finished my project and went for a walk."
-        ))
-}
