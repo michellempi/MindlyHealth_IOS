@@ -43,7 +43,6 @@ struct ProfileView: View {
             // Logout Button
             Button(action: {
                 authVM.signOut()
-                authVM.checkUserSession()
             }) {
                 Text("Logout")
                     .frame(maxWidth: .infinity)

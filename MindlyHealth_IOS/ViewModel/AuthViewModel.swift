@@ -43,6 +43,7 @@ class AuthViewModel: ObservableObject {
     func signOut() {
         do {
             try Auth.auth().signOut()
+            self.checkUserSession()
         } catch {
             print("Sign Out Error: \(error.localizedDescription)")
         }
