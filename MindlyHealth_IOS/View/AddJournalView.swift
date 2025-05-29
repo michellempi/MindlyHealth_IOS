@@ -4,7 +4,6 @@
 //
 //  Created by student on 28/05/25.
 //
-
 import SwiftUI
 
 struct AddJournalView: View {
@@ -14,6 +13,7 @@ struct AddJournalView: View {
     @State private var title: String = ""
     @State private var content: String = ""
     @State private var selectedMood: MoodModel = MoodModel(id: "happy", description: "Happy", emoji: "😊")
+    var existingJournal: JournalModel? = nil
 
     let moods: [MoodModel] = [
         .init(id: "happy", description: "Happy", emoji: "😊"),
@@ -46,7 +46,7 @@ struct AddJournalView: View {
                         .frame(height: 150)
                 }
             }
-            .navigationTitle("New Journal")
+            .navigationTitle(existingJournal == nil ? "New Journal" : "Edit Journal")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
@@ -55,14 +55,30 @@ struct AddJournalView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        journalVM.addJournal(
-                            title: title,
-                            content: content,
-                            mood: selectedMood
-                        )
+                        if let journal = existingJournal {
+                            journalVM.updateJournal(
+                                journal,
+                                newTitle: title,
+                                newContent: content,
+                                newMood: selectedMood
+                            )
+                        } else {
+                            journalVM.addJournal(
+                                title: title,
+                                content: content,
+                                mood: selectedMood
+                            )
+                        }
                         dismiss()
                     }
                     .disabled(title.isEmpty || content.isEmpty)
+                }
+            }
+            .onAppear {
+                if let journal = existingJournal {
+                    title = journal.title
+                    content = journal.content
+                    selectedMood = journal.mood
                 }
             }
         }

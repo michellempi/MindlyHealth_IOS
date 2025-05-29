@@ -65,16 +65,17 @@ class JournalViewModel: ObservableObject {
     
     func fetchJournalEntries() {
         dbRef?.observe(.value, with: { snapshot in
-            var newEntries: [JournalEntry] = []
+            var newJournals: [JournalModel] = []
             for child in snapshot.children {
                 if let childSnapshot = child as? DataSnapshot,
-                   let entry = JournalEntry(from: childSnapshot) {
-                    newEntries.append(entry)
+                   let journal = JournalModel(from: childSnapshot) {
+                    newJournals.append(journal)
                 }
             }
-            self.journalEntries = newEntries.sorted { $0.timestamp > $1.timestamp }
+            self.journals = newJournals.sorted(by: { $0.date > $1.date })
         })
     }
+
     
     func addEntry(title: String, content: String) {
         let newEntry = JournalEntry(title: title, content: content)
@@ -99,4 +100,27 @@ class JournalViewModel: ObservableObject {
         
         dbRef?.child(journal.id).setValue(journal.toDict())
     }
+    
+    func deleteJournal(_ journal: JournalModel) {
+        dbRef?.child(journal.id).removeValue()
+        journals.removeAll { $0.id == journal.id }
+    }
+    
+    func updateJournal(_ journal: JournalModel, newTitle: String, newContent: String, newMood: MoodModel) {
+        let updated = JournalModel(
+            id: journal.id,
+            userId: journal.userId,
+            date: journal.date,
+            mood: newMood,
+            title: newTitle,
+            content: newContent
+        )
+        
+        dbRef?.child(journal.id).setValue(updated.toDict())
+        
+        if let index = journals.firstIndex(where: { $0.id == journal.id }) {
+            journals[index] = updated
+        }
+    }
+
 }

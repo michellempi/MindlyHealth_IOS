@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct MoodModel {
-    var id: String = ""
-    var description: String = ""
-    var emoji: String = ""
+struct MoodModel: Identifiable, Hashable {
+    var id: String
+    var description: String
+    var emoji: String
 }

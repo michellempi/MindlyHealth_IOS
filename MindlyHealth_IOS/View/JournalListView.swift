@@ -10,13 +10,21 @@ import SwiftUI
 struct JournalListView: View {
     @StateObject private var journalVM = JournalViewModel()
     @State private var showingAdd = false
+    @State private var editingJournal: JournalModel? = nil
 
     var body: some View {
         NavigationView {
             VStack {
                 if journalVM.journals.isEmpty {
                     Spacer()
-                    ProgressView("Loading Journals...")
+                    VStack(spacing: 8) {
+                        Text("You have no journals")
+                            .font(.title3)
+                            .foregroundColor(.secondary)
+                        Text("Start by adding a new journal entry!")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
                     Spacer()
                 } else {
                     ScrollView {
@@ -24,8 +32,12 @@ struct JournalListView: View {
                             ForEach(journalVM.journals) { journal in
                                 JournalCardView(
                                     journal: journal,
+                                    onEdit: {
+                                        editingJournal = journal
+                                        showingAdd = true
+                                    },
                                     onDelete: {
-                                        $journalVM.deleteJournal(journal)
+                                        journalVM.deleteJournal(journal)
                                     }
                                 )
                             }
@@ -45,9 +57,11 @@ struct JournalListView: View {
                 }
             }
             .sheet(isPresented: $showingAdd) {
-                AddJournalView(journalVM: journalVM)
+                AddJournalView(
+                    journalVM: journalVM,
+                    existingJournal: editingJournal
+                )
             }
         }
     }
 }
-
