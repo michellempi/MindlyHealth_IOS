@@ -160,9 +160,12 @@ struct AddJournalView: View {
                             focusedField = nil
                             dismiss()
                         }
-                        .buttonStyle(.bordered)
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                        .background(.gray.opacity(0.2))
+                        .foregroundColor(.primary)
+                        .cornerRadius(8)
                         .controlSize(.large)
-                        .foregroundStyle(.secondary)
                         
                         Button(existingJournal == nil ? "Save Journal" : "Update Journal") {
                             focusedField = nil
@@ -182,7 +185,11 @@ struct AddJournalView: View {
                             }
                             dismiss()
                         }
-                        .buttonStyle(.borderedProminent)
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                        .background(title.isEmpty || content.isEmpty ? .gray.opacity(0.3) : .blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                         .controlSize(.large)
                         .disabled(title.isEmpty || content.isEmpty)
                     }

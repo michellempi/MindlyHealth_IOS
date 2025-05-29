@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var authVM: AuthViewModel
-    @Binding var isRegisterView: Bool  // binding dari ContentView
+    @Binding var isRegisterView: Bool  
     @FocusState private var focusedField: Field?
     
     enum Field {
@@ -111,11 +111,14 @@ struct LoginView: View {
                             HStack {
                                 Text("Sign In")
                                     .fontWeight(.semibold)
+                                    .foregroundColor(.white)
                             }
                             .frame(maxWidth: .infinity)
-                            .frame(height: 20)
+                            .frame(height: 50)
                         }
-                        .buttonStyle(.borderedProminent)
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                         .controlSize(.large)
                         .disabled(authVM.userModel.email.isEmpty ||
                                  authVM.userModel.password.isEmpty)

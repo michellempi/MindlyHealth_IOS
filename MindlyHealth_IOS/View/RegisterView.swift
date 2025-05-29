@@ -128,11 +128,14 @@ struct RegisterView: View {
                             HStack {
                                 Text("Create Account")
                                     .fontWeight(.semibold)
+                                    .foregroundColor(.white)
                             }
                             .frame(maxWidth: .infinity)
-                            .frame(height: 20)
+                            .frame(height: 50)
                         }
-                        .buttonStyle(.borderedProminent)
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                         .controlSize(.large)
                         .disabled(authVM.userModel.name.isEmpty ||
                                  authVM.userModel.email.isEmpty ||
