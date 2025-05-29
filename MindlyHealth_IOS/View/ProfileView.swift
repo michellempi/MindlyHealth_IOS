@@ -9,51 +9,183 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var authVM: AuthViewModel
-    @State private var isPasswordVisible: Bool = false
+    @State private var showingLogoutAlert = false
 
     var body: some View {
-        VStack(spacing: 25) {
-            Spacer()
-
-            Text("My Profile")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.top, 40)
-
-            VStack(alignment: .leading, spacing: 15) {
-                // Name
-                Text("Name")
-                    .font(.headline)
-                Text(authVM.currentName)
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-
-                // Email
-                Text("Email")
-                    .font(.headline)
-                Text(authVM.currentEmail)
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 0) {
+                    // Header Section with Avatar
+                    VStack(spacing: 16) {
+                        // Profile Avatar
+                        ZStack {
+                            Circle()
+                                .fill(.blue.gradient)
+                                .frame(width: 100, height: 100)
+                            
+                            Text(String(authVM.currentName.prefix(1).uppercased()))
+                                .font(.system(size: 40, weight: .semibold))
+                                .foregroundStyle(.white)
+                        }
+                        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+                        .padding(.top, 40)
+                        
+                        VStack(spacing: 4) {
+                            Text(authVM.currentName.isEmpty ? "User" : authVM.currentName)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.primary)
+                            
+                            Text(authVM.currentEmail)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(.top, max(60, geometry.safeAreaInsets.top + 40))
+                    .padding(.bottom, 40)
+                    
+                    // Profile Information Section
+                    VStack(spacing: 16) {
+                        // Section Header
+                        HStack {
+                            Text("Account Information")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.primary)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 8)
+                        
+                        VStack(spacing: 12) {
+                            // Name Field
+                            ProfileInfoRow(
+                                icon: "person.fill",
+                                title: "Full Name",
+                                value: authVM.currentName.isEmpty ? "Not provided" : authVM.currentName,
+                                iconColor: .blue
+                            )
+                            
+                            Divider()
+                                .padding(.horizontal, 56)
+                            
+                            // Email Field
+                            ProfileInfoRow(
+                                icon: "envelope.fill",
+                                title: "Email Address",
+                                value: authVM.currentEmail,
+                                iconColor: .green
+                            )
+                        }
+                        .padding(.vertical, 16)
+                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+                        .padding(.horizontal, 24)
+                    }
+                    .padding(.bottom, 40)
+                    
+                    // Account Actions Section
+                    VStack(spacing: 16) {
+                        // Section Header
+                        HStack {
+                            Text("Account Actions")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.primary)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 8)
+                        
+                        VStack(spacing: 12) {
+                            // Settings Row (Placeholder for future features)
+                           
+                            // Logout Row
+                            Button(action: {
+                                showingLogoutAlert = true
+                            }) {
+                                HStack(spacing: 16) {
+                                    ZStack {
+                                        Circle()
+                                            .fill(.red.opacity(0.2))
+                                            .frame(width: 40, height: 40)
+                                        
+                                        Image(systemName: "power")
+                                            .font(.system(size: 18))
+                                            .foregroundStyle(.red)
+                                    }
+                                    
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text("Sign Out")
+                                            .font(.body)
+                                            .fontWeight(.medium)
+                                            .foregroundStyle(.red)
+                                        
+                                        Text("Sign out of your account")
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    
+                                    Spacer()
+                                }
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 12)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+                        .padding(.horizontal, 24)
+                    }
+                    .padding(.bottom, max(40, geometry.safeAreaInsets.bottom + 20))
+                }
             }
-
-            // Logout Button
-            Button(action: {
+            .frame(minHeight: geometry.size.height)
+        }
+        .background(.regularMaterial)
+        .ignoresSafeArea()
+        .alert("Sign Out", isPresented: $showingLogoutAlert) {
+            Button("Cancel", role: .cancel) { }
+            Button("Sign Out", role: .destructive) {
                 authVM.signOut()
-            }) {
-                Text("Logout")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.red)
-                    .cornerRadius(10)
             }
+        } message: {
+            Text("Are you sure you want to sign out of your account?")
+        }
+    }
+}
+
+// Custom Profile Info Row Component
+struct ProfileInfoRow: View {
+    let icon: String
+    let title: String
+    let value: String
+    let iconColor: Color
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            ZStack {
+                Circle()
+                    .fill(iconColor.opacity(0.2))
+                    .frame(width: 40, height: 40)
+                
+                Image(systemName: icon)
+                    .font(.system(size: 18))
+                    .foregroundStyle(iconColor)
+            }
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundStyle(.secondary)
+                
+                Text(value)
+                    .font(.body)
+                    .foregroundStyle(.primary)
+            }
+            
             Spacer()
         }
-        .padding(.horizontal, 30)
+        .padding(.horizontal, 20)
     }
 }
 
