@@ -15,7 +15,7 @@ struct JournalListView: View {
     @State private var journalToDelete: JournalModel? = nil
     @State private var searchText = ""
     
-    // Filtered journals based on search
+
     var filteredJournals: [JournalModel] {
         if searchText.isEmpty {
             return journalVM.journals.sorted { $0.date > $1.date }
@@ -33,20 +33,20 @@ struct JournalListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Background
+                
                 Color(.systemGroupedBackground)
                     .ignoresSafeArea()
                 
                 if journalVM.journals.isEmpty {
-                    // Empty state
+                   
                     EmptyJournalView {
                         showingAdd = true
                     }
                 } else if filteredJournals.isEmpty && !searchText.isEmpty {
-                    // No search results
+                   
                     NoSearchResultsView(searchText: searchText)
                 } else {
-                    // Journal list
+                    
                     ScrollView {
                         LazyVStack(spacing: 16) {
                             ForEach(filteredJournals) { journal in
@@ -69,10 +69,10 @@ struct JournalListView: View {
                         }
                         .padding(.horizontal, 16)
                         .padding(.top, 16)
-                        .padding(.bottom, 100) // Space for floating button
+                        .padding(.bottom, 100)
                     }
                     .refreshable {
-                        // Add pull to refresh functionality if needed
+                        
                         await refreshJournals()
                     }
                 }
@@ -84,13 +84,13 @@ struct JournalListView: View {
                     if !journalVM.journals.isEmpty {
                         Menu {
                             Button(action: {
-                                // Sort by date
+                               
                             }) {
                                 Label("Sort by Date", systemImage: "calendar")
                             }
                             
                             Button(action: {
-                                // Sort by mood
+                               
                             }) {
                                 Label("Sort by Mood", systemImage: "face.smiling")
                             }
@@ -135,25 +135,25 @@ struct JournalListView: View {
         }
         .searchable(text: $searchText, prompt: "Search journals...")
         .onAppear {
-            // Load journals or perform initial setup
+           
         }
     }
     
-    // MARK: - Helper Functions
+  
     private func refreshJournals() async {
-        // Simulate refresh delay
+        
         try? await Task.sleep(nanoseconds: 1_000_000_000)
-        // Refresh logic here
+       
     }
 }
 
-// MARK: - Empty State View
+
 struct EmptyJournalView: View {
     let onAddJournal: () -> Void
     
     var body: some View {
         VStack(spacing: 24) {
-            // Icon
+            
             ZStack {
                 Circle()
                     .fill(.blue.opacity(0.1))
@@ -164,7 +164,7 @@ struct EmptyJournalView: View {
                     .foregroundStyle(.blue)
             }
             
-            // Text content
+           
             VStack(spacing: 8) {
                 Text("Start Your Journal")
                     .font(.title2)
@@ -178,7 +178,7 @@ struct EmptyJournalView: View {
                     .padding(.horizontal, 32)
             }
             
-            // Call to action button
+         
             Button(action: onAddJournal) {
                 HStack(spacing: 8) {
                     Image(systemName: "plus")
@@ -202,7 +202,6 @@ struct EmptyJournalView: View {
 
 
 
-// MARK: - No Search Results View
 struct NoSearchResultsView: View {
     let searchText: String
     
@@ -228,7 +227,7 @@ struct NoSearchResultsView: View {
     }
 }
 
-// MARK: - Preview
+
 #Preview {
     JournalListView()
 }

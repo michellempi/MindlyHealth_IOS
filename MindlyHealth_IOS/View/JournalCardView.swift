@@ -16,7 +16,7 @@ struct JournalCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            // Header with date
+           
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(journal.date, style: .date)
@@ -31,7 +31,7 @@ struct JournalCardView: View {
                 
                 Spacer()
                 
-                // Mood indicator as a badge
+                
                 HStack(spacing: 6) {
                     Text(journal.mood.emoji)
                         .font(.title3)
@@ -49,9 +49,9 @@ struct JournalCardView: View {
             .padding(.top, 20)
             .padding(.bottom, 16)
             
-            // Content section
+        
             VStack(alignment: .leading, spacing: 12) {
-                // Title
+              
                 Text(journal.title)
                     .font(.title3)
                     .fontWeight(.semibold)
@@ -59,7 +59,7 @@ struct JournalCardView: View {
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                 
-                // Content preview
+                
                 Text(journal.content)
                     .font(.body)
                     .foregroundStyle(.secondary)
@@ -69,15 +69,15 @@ struct JournalCardView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 20)
             
-            // Divider
+            
             Rectangle()
                 .fill(.quaternary)
                 .frame(height: 0.5)
                 .padding(.horizontal, 20)
             
-            // Action buttons
+            
             HStack(spacing: 0) {
-                // Edit button
+                
                 Button(action: onEdit) {
                     HStack(spacing: 6) {
                         Image(systemName: "pencil")
@@ -93,13 +93,13 @@ struct JournalCardView: View {
                 }
                 .buttonStyle(.plain)
                 
-                // Separator
+               
                 Rectangle()
                     .fill(.quaternary)
                     .frame(width: 0.5)
                     .padding(.vertical, 8)
                 
-                // Delete button
+                
                 Button(action: onDelete) {
                     HStack(spacing: 6) {
                         Image(systemName: "trash")
@@ -124,7 +124,7 @@ struct JournalCardView: View {
         .scaleEffect(isPressed ? 0.98 : 1.0)
         .animation(.easeInOut(duration: 0.1), value: isPressed)
         .onTapGesture {
-            // Optional: Add tap gesture for card selection if needed
+            
         }
         .onLongPressGesture(minimumDuration: 0, maximumDistance: .infinity, pressing: { pressing in
             withAnimation(.easeInOut(duration: 0.1)) {

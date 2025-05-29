@@ -9,8 +9,10 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var authVM: AuthViewModel
-    @Binding var isRegisterView: Bool  
+    @Binding var isRegisterView: Bool
     @FocusState private var focusedField: Field?
+    @State private var showValidationError = false
+    @State private var validationMessage = ""
     
     enum Field {
         case email, password
@@ -20,7 +22,7 @@ struct LoginView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: 0) {
-                    // Header Section
+                    
                     VStack(alignment: .leading, spacing: 8) {
                         
                         Text("Welcome Back")
@@ -38,9 +40,9 @@ struct LoginView: View {
                     .padding(.top, max(40, geometry.safeAreaInsets.top + 20))
                     .padding(.bottom, 40)
                     
-                    // Form Section
+                    
                     VStack(spacing: 16) {
-                        // Email Field
+                        
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Email")
                                 .font(.subheadline)
@@ -56,9 +58,18 @@ struct LoginView: View {
                                 .onSubmit {
                                     focusedField = .password
                                 }
+                                .onChange(of: authVM.userModel.email) { _ in
+                                    if showValidationError {
+                                        showValidationError = false
+                                    }
+                                }
+                                .onChange(of: authVM.userModel.email) { _ in
+                                    if showValidationError {
+                                        showValidationError = false
+                                    }
+                                }
                         }
                         
-                        // Password Field
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Password")
                                 .font(.subheadline)
@@ -72,9 +83,34 @@ struct LoginView: View {
                                 .onSubmit {
                                     focusedField = nil
                                 }
+                                .onChange(of: authVM.userModel.password) { _ in
+                                    if showValidationError {
+                                        showValidationError = false
+                                    }
+                                }
+                                .onChange(of: authVM.userModel.password) { _ in
+                                    if showValidationError {
+                                        showValidationError = false
+                                    }
+                                }
+                        }
+                      
+                        if showValidationError {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundStyle(.orange)
+                                Text(validationMessage)
+                                    .font(.footnote)
+                                Spacer()
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 12)
+                            .background(.orange.opacity(0.1))
+                            .cornerRadius(8)
+                            .transition(.opacity.combined(with: .move(edge: .top)))
                         }
                         
-                        // Error Message
+                   
                         if authVM.falseCredential {
                             HStack {
                                 Image(systemName: "exclamationmark.triangle.fill")
@@ -93,17 +129,30 @@ struct LoginView: View {
                     .padding(.horizontal, 24)
                     .padding(.bottom, 32)
                     
-                    // Action Buttons Section
                     VStack(spacing: 16) {
-                        // Login Button
+                        
                         Button(
                             action: {
                                 focusedField = nil
-                                Task {
-                                    await authVM.signIn()
-                                    if !authVM.falseCredential {
-                                        authVM.checkUserSession()
-                                        authVM.userModel = UserModel()
+                                
+                                
+                                if authVM.userModel.email.isEmpty && authVM.userModel.password.isEmpty {
+                                    validationMessage = "Enter your Email and Password first to Sign In"
+                                    showValidationError = true
+                                } else if authVM.userModel.email.isEmpty {
+                                    validationMessage = "Enter your Email first"
+                                    showValidationError = true
+                                } else if authVM.userModel.password.isEmpty {
+                                    validationMessage = "Enter your Password first"
+                                    showValidationError = true
+                                } else {
+                                    showValidationError = false
+                                    Task {
+                                        await authVM.signIn()
+                                        if !authVM.falseCredential {
+                                            authVM.checkUserSession()
+                                            authVM.userModel = UserModel()
+                                        }
                                     }
                                 }
                             }
@@ -120,10 +169,8 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                         .controlSize(.large)
-                        .disabled(authVM.userModel.email.isEmpty ||
-                                 authVM.userModel.password.isEmpty)
                         
-                        // Divider
+                       
                         HStack {
                             Rectangle()
                                 .fill(.quaternary)
@@ -138,7 +185,7 @@ struct LoginView: View {
                         }
                         .padding(.vertical, 8)
                         
-                        // Register Button
+                      
                         Button(action: {
                             focusedField = nil
                             withAnimation(.easeInOut(duration: 0.3)) {
@@ -168,6 +215,8 @@ struct LoginView: View {
             focusedField = nil
         }
         .animation(.easeInOut(duration: 0.2), value: authVM.falseCredential)
+        .animation(.easeInOut(duration: 0.2), value: showValidationError)
+        .animation(.easeInOut(duration: 0.2), value: showValidationError)
     }
 }
 

@@ -19,6 +19,8 @@ struct AddJournalView: View {
     @State private var title: String = ""
     @State private var content: String = ""
     @State private var selectedMood: MoodModel = MoodModel(id: "happy", description: "Happy", emoji: "😊")
+    @State private var showErrorMessage: Bool = false
+    @State private var errorMessage: String = ""
     var existingJournal: JournalModel? = nil
 
     let moods: [MoodModel] = [
@@ -33,7 +35,7 @@ struct AddJournalView: View {
             GeometryReader { geometry in
                 ScrollView {
                     VStack(spacing: 0) {
-                        // Header Section
+                       
                         VStack(alignment: .leading, spacing: 12) {
                             HStack {
                                 VStack(alignment: .leading, spacing: 4) {
@@ -53,9 +55,28 @@ struct AddJournalView: View {
                         .padding(.top, 20)
                         .padding(.bottom, 24)
                         
-                        // Form Content
+                    
+                        if showErrorMessage {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.red)
+                                Text(errorMessage)
+                                    .font(.subheadline)
+                                    .foregroundColor(.red)
+                                Spacer()
+                            }
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 12)
+                            .background(Color.red.opacity(0.1))
+                            .cornerRadius(8)
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 16)
+                            .transition(.opacity.combined(with: .move(edge: .top)))
+                        }
+                        
+                        
                         VStack(spacing: 24) {
-                            // Title Section
+                            
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack {
                                     Text("Title")
@@ -73,11 +94,16 @@ struct AddJournalView: View {
                                         .onSubmit {
                                             focusedField = .content
                                         }
+                                        .onChange(of: title) { _ in
+                                            if showErrorMessage {
+                                                showErrorMessage = false
+                                            }
+                                        }
                                 }
                                 .padding(.horizontal, 24)
                             }
                             
-                            // Mood Section
+                            
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack {
                                     Text("How are you feeling?")
@@ -137,6 +163,11 @@ struct AddJournalView: View {
                                             .focused($focusedField, equals: .content)
                                             .padding(.horizontal, 12)
                                             .padding(.vertical, 12)
+                                            .onChange(of: content) { _ in
+                                                if showErrorMessage {
+                                                    showErrorMessage = false
+                                                }
+                                            }
                                     }
                                     
                                     HStack {
@@ -149,12 +180,12 @@ struct AddJournalView: View {
                                 .padding(.horizontal, 24)
                             }
                         }
-                        .padding(.bottom, 100) // Space for floating button
+                        .padding(.bottom, 100)
                     }
                 }
                 .frame(minHeight: geometry.size.height)
                 .overlay(alignment: .bottom) {
-                    // Floating Action Buttons
+                    
                     HStack(spacing: 12) {
                         Button("Cancel") {
                             focusedField = nil
@@ -169,6 +200,24 @@ struct AddJournalView: View {
                         
                         Button(existingJournal == nil ? "Save Journal" : "Update Journal") {
                             focusedField = nil
+                            
+                        
+                            if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                errorMessage = "Please complete the entry before saving it"
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    showErrorMessage = true
+                                }
+                                
+                               
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        showErrorMessage = false
+                                    }
+                                }
+                                return
+                            }
+                            
+                           
                             if let journal = existingJournal {
                                 journalVM.updateJournal(
                                     journal,
@@ -187,11 +236,10 @@ struct AddJournalView: View {
                         }
                         .frame(height: 50)
                         .frame(maxWidth: .infinity)
-                        .background(title.isEmpty || content.isEmpty ? .gray.opacity(0.3) : .blue)
+                        .background(.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                         .controlSize(.large)
-                        .disabled(title.isEmpty || content.isEmpty)
                     }
                     .padding(.horizontal, 24)
                     .padding(.vertical, 16)

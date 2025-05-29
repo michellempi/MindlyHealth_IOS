@@ -9,8 +9,10 @@ import SwiftUI
 
 struct RegisterView: View {
     @EnvironmentObject var authVM: AuthViewModel
-    @Binding var isRegisterView: Bool  // binding dari ContentView
+    @Binding var isRegisterView: Bool
     @FocusState private var focusedField: Field?
+    @State private var showValidationError = false
+    @State private var validationMessage = ""
     
     enum Field {
         case name, email, password
@@ -20,7 +22,7 @@ struct RegisterView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: 0) {
-                                    // Header Section
+                                   
                                     VStack(alignment: .leading, spacing: 8) {
                                         
                                         Text("Create Account")
@@ -38,7 +40,7 @@ struct RegisterView: View {
                                     .padding(.top, max(40, geometry.safeAreaInsets.top + 20))
                                     .padding(.bottom, 40)
                     
-                    // Form Section
+                   
                     VStack(spacing: 16) {
                         // Name Field
                         VStack(alignment: .leading, spacing: 6) {
@@ -55,9 +57,14 @@ struct RegisterView: View {
                                 .onSubmit {
                                     focusedField = .email
                                 }
+                                .onChange(of: authVM.userModel.name) { _ in
+                                    if showValidationError {
+                                        showValidationError = false
+                                    }
+                                }
                         }
                         
-                        // Email Field
+                        
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Email")
                                 .font(.subheadline)
@@ -73,9 +80,14 @@ struct RegisterView: View {
                                 .onSubmit {
                                     focusedField = .password
                                 }
+                                .onChange(of: authVM.userModel.email) { _ in
+                                    if showValidationError {
+                                        showValidationError = false
+                                    }
+                                }
                         }
                         
-                        // Password Field
+                        
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Password")
                                 .font(.subheadline)
@@ -89,9 +101,30 @@ struct RegisterView: View {
                                 .onSubmit {
                                     focusedField = nil
                                 }
+                                .onChange(of: authVM.userModel.password) { _ in
+                                    if showValidationError {
+                                        showValidationError = false
+                                    }
+                                }
                         }
                         
-                        // Error Message
+                        
+                        if showValidationError {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundStyle(.orange)
+                                Text(validationMessage)
+                                    .font(.footnote)
+                                Spacer()
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 12)
+                            .background(.orange.opacity(0.1))
+                            .cornerRadius(8)
+                            .transition(.opacity.combined(with: .move(edge: .top)))
+                        }
+                        
+                        
                         if authVM.falseCredential {
                             HStack {
                                 Image(systemName: "exclamationmark.triangle.fill")
@@ -110,17 +143,41 @@ struct RegisterView: View {
                     .padding(.horizontal, 24)
                     .padding(.bottom, 32)
                     
-                    // Action Buttons Section
+                    
                     VStack(spacing: 16) {
-                        // Register Button
+                        
                         Button(
                             action: {
                                 focusedField = nil
-                                Task {
-                                    await authVM.signUp()
-                                    if !authVM.falseCredential {
-                                        authVM.checkUserSession()
-                                        authVM.userModel = UserModel()
+                                
+                               
+                                let emptyFields = [
+                                    (authVM.userModel.name.isEmpty, "Full Name"),
+                                    (authVM.userModel.email.isEmpty, "Email"),
+                                    (authVM.userModel.password.isEmpty, "Password")
+                                ]
+                                
+                                let missingFields = emptyFields.compactMap { isEmpty, fieldName in
+                                    isEmpty ? fieldName : nil
+                                }
+                                
+                                if !missingFields.isEmpty {
+                                    if missingFields.count == 3 {
+                                        validationMessage = "Enter your Full Name/Email/Password first"
+                                    } else if missingFields.count == 2 {
+                                        validationMessage = "Enter your \(missingFields.joined(separator: "/")) first"
+                                    } else {
+                                        validationMessage = "Enter your \(missingFields[0]) first"
+                                    }
+                                    showValidationError = true
+                                } else {
+                                    showValidationError = false
+                                    Task {
+                                        await authVM.signUp()
+                                        if !authVM.falseCredential {
+                                            authVM.checkUserSession()
+                                            authVM.userModel = UserModel()
+                                        }
                                     }
                                 }
                             }
@@ -137,9 +194,6 @@ struct RegisterView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                         .controlSize(.large)
-                        .disabled(authVM.userModel.name.isEmpty ||
-                                 authVM.userModel.email.isEmpty ||
-                                 authVM.userModel.password.isEmpty)
                         
                         // Divider
                         HStack {
@@ -156,7 +210,7 @@ struct RegisterView: View {
                         }
                         .padding(.vertical, 8)
                         
-                        // Login Button
+                       
                         Button(action: {
                             focusedField = nil
                             withAnimation(.easeInOut(duration: 0.3)) {
@@ -186,10 +240,11 @@ struct RegisterView: View {
             focusedField = nil
         }
         .animation(.easeInOut(duration: 0.2), value: authVM.falseCredential)
+        .animation(.easeInOut(duration: 0.2), value: showValidationError)
     }
 }
 
-// Custom TextField Style sesuai HIG
+
 struct CustomTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration

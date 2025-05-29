@@ -15,9 +15,9 @@ struct ProfileView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: 0) {
-                    // Header Section with Avatar
+                
                     VStack(spacing: 16) {
-                        // Profile Avatar
+                  
                         ZStack {
                             Circle()
                                 .fill(.blue.gradient)
@@ -44,9 +44,9 @@ struct ProfileView: View {
                     .padding(.top, max(60, geometry.safeAreaInsets.top + 40))
                     .padding(.bottom, 40)
                     
-                    // Profile Information Section
+                   
                     VStack(spacing: 16) {
-                        // Section Header
+                        
                         HStack {
                             Text("Account Information")
                                 .font(.headline)
@@ -58,7 +58,7 @@ struct ProfileView: View {
                         .padding(.bottom, 8)
                         
                         VStack(spacing: 12) {
-                            // Name Field
+                           
                             ProfileInfoRow(
                                 icon: "person.fill",
                                 title: "Full Name",
@@ -69,7 +69,7 @@ struct ProfileView: View {
                             Divider()
                                 .padding(.horizontal, 56)
                             
-                            // Email Field
+                     
                             ProfileInfoRow(
                                 icon: "envelope.fill",
                                 title: "Email Address",
@@ -83,9 +83,9 @@ struct ProfileView: View {
                     }
                     .padding(.bottom, 40)
                     
-                    // Account Actions Section
+                   
                     VStack(spacing: 16) {
-                        // Section Header
+                     
                         HStack {
                             Text("Account Actions")
                                 .font(.headline)
@@ -97,9 +97,9 @@ struct ProfileView: View {
                         .padding(.bottom, 8)
                         
                         VStack(spacing: 12) {
-                            // Settings Row (Placeholder for future features)
+                          
                            
-                            // Logout Row
+                           
                             Button(action: {
                                 showingLogoutAlert = true
                             }) {
@@ -153,7 +153,7 @@ struct ProfileView: View {
     }
 }
 
-// Custom Profile Info Row Component
+
 struct ProfileInfoRow: View {
     let icon: String
     let title: String
